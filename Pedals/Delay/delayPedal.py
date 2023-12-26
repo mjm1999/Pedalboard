@@ -12,8 +12,6 @@ class DelayPedal(BasePedal):
     def ChangeTime(self, value: float):
         self.timeParam = value
 
-    def ChangeFeedback(self, value: float):
-        self.feedbackParam = value
 
     def ChangeDecay(self, value: float):
         self.decayParam = value

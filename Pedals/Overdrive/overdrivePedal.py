@@ -21,7 +21,7 @@ class OverdrivePedal(BasePedal):
     def ChangeDepth(self, value: float):
         self.depthParam = value
 
-    def ChangeLevel(self, value: float):
+    def ChangeBoost(self, value: float):
         self.boostParam = value
 
     def PrintParams(self):
