@@ -18,6 +18,10 @@ class DelayPedal(BasePedal):
     def ChangeDecay(self, value: float):
         self.decayParam = value
 
+    def PrintParams(self):
+        print(f"\nTime: {self.timeParam}/1.0"
+              f"\nDecay: {self.decayParam}/0.99")
+
     def __DelaySignal(self, audio_data, audio_rate):
         if self.timeParam > 1:
             print(f"Time parameter {self.timeParam} exceeds upper bound of 1. Adjusting to 1.")

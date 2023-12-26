@@ -11,6 +11,8 @@ class LoFiPedal(BasePedal):
     def ChangeModulation(self, value: float):
         self.modulationParam = value
 
+    def PrintParams(self):
+        print(f"\nModulation: {self.modulationParam}/0.99")
     def __ModulationSignal(self, audio_data):
         if self.modulationParam > 0.99:
             print(f"Modulation parameter {self.modulationParam} exceeds upper bound of 0.99. Adjusting.")

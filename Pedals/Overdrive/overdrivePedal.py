@@ -24,6 +24,11 @@ class OverdrivePedal(BasePedal):
     def ChangeLevel(self, value: float):
         self.boostParam = value
 
+    def PrintParams(self):
+        print(f"\nOverdrive: {self.overdriveParam}/1.0"
+              f"\nCutoff: {self.cutoffParam}kHz"
+              f"\nDepth: {self.depthParam}/1.0"
+              f"\nBoost: {self.boostParam}/1.0")
     def __OverdriveSignal(self, audio_data):
         output_data = overdrive(audio_data, self.overdriveParam)
         return output_data

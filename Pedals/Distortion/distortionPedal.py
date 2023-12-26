@@ -24,6 +24,11 @@ class DistortionPedal(BasePedal):
     def ChangeLevel(self, value: float):
         self.levelParam = value
 
+    def PrintParams(self):
+        print(f"\nDistortion: {self.distortionParam}/1.0"
+              f"\nCutoff: {self.cutoffParam}kHz"
+              f"\nDepth: {self.depthParam}/1.0"
+              f"\nLevel: {self.levelParam}/1.0")
     def __DistortSignal(self, audio_data):
         if self.distortionParam > 1:
             print(f"Distortion parameter {self.distortionParam} exceeds upper bound of 1. Adjusting.")

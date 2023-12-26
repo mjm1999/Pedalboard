@@ -19,6 +19,8 @@ class Pedalboard:
     def displayPedals(self):
         for i, pedal in enumerate(self.pedals):
             print(f"{i} - {pedal.pedalType}")
+            pedal.PrintParams()
+            print("\n__________\n")
 
     def processFile(self, audio: AudioFile, output_name: str = 'out.mp3'):
         audio_data = audio.data
