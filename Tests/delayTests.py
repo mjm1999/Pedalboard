@@ -1,18 +1,39 @@
 import unittest
 from Pedals.Delay.delayPedal import DelayPedal
-from Pedals.Delay.delayFunctions import *
 from Root.audiofile import AudioFile
 
 
-class DelayFunctionTests(unittest.TestCase):
-
-    testAudioFile = AudioFile()
-    testAudioFile.loadFile("test_input.mp3")
-    testData = testAudioFile.getData()
-    testRate = testAudioFile.getRate()
+class DelayTests(unittest.TestCase):
 
     def test_time(self):
-        self.assertEqual(True, False)  # add assertion here
+        testAudioFile = AudioFile()
+        testAudioFile.loadFile("test_input.mp3")
+        testData = testAudioFile.getData()
+        testRate = int(testAudioFile.getRate())
+        delayPedal = DelayPedal()
+        output_1 = delayPedal.Execute(audio_data=testData, audio_rate=testRate)
+        self.assertNotEqual(testData, output_1)
+        delayPedal.ChangeTime(0.2)
+        output_2 = delayPedal.Execute(audio_data=testData, audio_rate=testRate)
+        self.assertNotEqual(output_1, output_2)
+
+    def test_decay(self):
+        testAudioFile = AudioFile()
+        testAudioFile.loadFile("test_input.mp3")
+        testData = testAudioFile.getData()
+        testRate = int(testAudioFile.getRate())
+        delayPedal = DelayPedal()
+        output_1 = delayPedal.Execute(audio_data=testData, audio_rate=testRate)
+        self.assertNotEqual(testData, output_1)
+        delayPedal.ChangeDecay(0.2)
+        output_2 = delayPedal.Execute(audio_data=testData, audio_rate=testRate)
+        self.assertNotEqual(output_1, output_2)
+
+    def test_basic(self):
+        delayPedal = DelayPedal()
+        self.assertEqual(delayPedal.pedalType, "delay")
+        self.assertEqual(delayPedal.timeParam, 0.5)
+        self.assertEqual(delayPedal.decayParam, 0.5)
 
 
 if __name__ == '__main__':
