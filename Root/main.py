@@ -29,10 +29,35 @@ def helpMenu():
           "\n\tprocessfile - path to export processed .mp3 file to")
 
     print("\n\n\nCommand Examples:\n\t'display'"
-          "\n\t'addpedal distortion [20, 0, 1] 0'"
+          "\n\t'addpedal distortion [20, 3.7, 0.5, 1] 0'"
           "\n\t'delpedal 0'"
           "\n\t'inputfile C:\\Users\\Username\\Desktop\\guitar_part.mp3'"
           "\n\t'processfile C:\\Users\\Username\\Desktop\\processed_guitar_part.mp3'")
+
+    print("\n\n\nPedal Parameters:"
+          "\n\tdistortion pedal:"
+          "\n\t\tdistortion: [min=0.0, max=1.0] - float indicating how much to distort audio signal"
+          "\n\t\tcutoff: [min=0, max=int(+inf) - cutoff frequency for toning lowpass filter"
+          "\n\t\tdepth: [min=0.0, max=1.0] - steepness of toning lowpass filter"
+          "\n\t\tlevel: [min=0.0, max=1.0] - decibel boost after effects were applied to input signal"
+          ""
+          "\n\n\toverdrive pedal:"
+          "\n\t\toverdrive: [min=0.0, max=1.0] - float indicating how much to overdrive audio signal"
+          "\n\t\tcutoff: [min=0, max=int(+inf) - cutoff frequency for toning lowpass filter"
+          "\n\t\tdepth: [min=0.0, max=1.0] - steepness of toning lowpass filter"
+          "\n\t\tboost: [min=0.0, max=1.0] - decibel boost after effects were applied to input signal"
+          ""
+          "\n\n\tdelay pedal:"
+          "\n\t\ttime: [min=0.0, max=1.0] - length of segments to copy and echo over audio signal"
+          "\n\t\tdecay: [min=0.0, max=0.99] - rate of echo fading"
+          ""
+          "\n\n\tlofimodulator pedal:"
+          "\n\t\tmodulation: [min=0.0, max=0.99] - how much compression/decompression should be applied to signal"
+          ""
+          "\n\n\tpitchshift pedal:"
+          "\n\t\toctaves: [min=-3, max=3] - octave shift to apply to signal"
+          "\n\t\tsemitones: [min=-11, max=11] - semitone shift to apply to signal"
+          )
 
 
 def mainLoop():

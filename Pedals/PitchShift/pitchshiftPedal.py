@@ -16,13 +16,26 @@ class PitchShiftPedal(BasePedal):
         self.semitonesParam = value
 
     def __PitchShiftSignal(self, audio_data, audio_rate):
+        if self.octavesParam > 3:
+            print(f"Octaves parameter {self.octavesParam} exceeds upper bound of 3. Adjusting.")
+            self.octavesParam = 3
+        if self.octavesParam < -3:
+            print(f"Octaves parameter {self.octavesParam} exceeds lower bound of -3. Adjusting.")
+            self.octavesParam = -3
+        if self.semitonesParam > 11:
+            print(f"Semitones parameter {self.octavesParam} exceeds upper bound of 11. Adjusting.")
+            self.semitonesParam = 11
+        if self.octavesParam < -11:
+            print(f"Semitones parameter {self.octavesParam} exceeds lower bound of -11. Adjusting.")
+            self.semitonesParam = -11
+
         output_data = pitchshift(audio_data,
                                  audio_rate,
                                  self.octavesParam,
                                  self.semitonesParam)
         return output_data
 
-    def Execute(self, audio_data, audio_rate=None):
+    def Execute(self, audio_data: [float], audio_rate: int = 22050):
         audio_data = self.__PitchShiftSignal(audio_data, audio_rate)
         return audio_data
 

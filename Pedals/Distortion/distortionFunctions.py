@@ -2,15 +2,16 @@ from math import atan
 from scipy.signal import butter, lfilter
 
 
-def distort(input_signal: [], gain: float = 20) -> [float]:  #
+def distort(input_signal: [], gain: float = 0.5) -> [float]:  #
     """
     Distort audio signal using equation f(x) = C1 * atan(C2 * x)
     :param input_signal: list of audio file data
     :param gain: float representing how much distortion to add
     :return: the modified audio signal as a list
     """
-    C1 = gain
-    C2 = 2/gain
+
+    C1 = gain * 40
+    C2 = 2/(gain * 40)
     output_signal = input_signal
 
     #  multiply by C2
@@ -38,7 +39,7 @@ def butter_lowpass_filter(data, cutoff, fs, order=5):
     return y
 
 
-def tone(input_signal: [float], cutoff: float = 3.7, depth=30) -> [float]:
+def tone(input_signal: [float], cutoff: float = 3.7, depth=0.5) -> [float]:
     """
     Modifies the audio signal tone using a lowpass filter
     :param input_signal: list of audio file data
@@ -48,7 +49,7 @@ def tone(input_signal: [float], cutoff: float = 3.7, depth=30) -> [float]:
     """
 
     # Filter the data, and plot both the original and filtered signals.
-    output_signal = butter_lowpass_filter(input_signal, cutoff, depth, 20)
+    output_signal = butter_lowpass_filter(input_signal, cutoff, depth * 60, 20)
     return output_signal
 
 
@@ -60,6 +61,6 @@ def level(input_signal: [float], increase: float = 0) -> [float]:
     :return: the modified audio signal as a list
     """
 
-    decibelToFloat = 10 ** (increase / 10)
+    decibelToFloat = 10 ** (increase)
     output_signal = [x * decibelToFloat for x in input_signal]
     return output_signal

@@ -10,7 +10,7 @@ def overdrive(input_signal: [float], drive: int = 0) -> [float]:
     :param drive: float representing how much to overdrive signal
     :return: the modified audio signal as a list
     """
-    a = sin(((drive + 1) / 101) * pi / 2)
+    a = sin(((drive + 0.01) / 1.01) * pi / 2)
     k = (2 * a) / (1 - a)
     output_signal = [float((1 + k) * x) for x in input_signal]
     output_signal = [float(x / (1 + (k * np.absolute(x)))) for x in output_signal]
@@ -28,7 +28,7 @@ def butter_lowpass_filter(input_signal: [float], cutoff: float, fs: float, order
     return y
 
 
-def tone(input_signal: [float], cutoff: float = 3.7, depth: float = 30) -> [float]:
+def tone(input_signal: [float], cutoff: float = 3.7, depth: float = 0.5) -> [float]:
     """
     Modifies the audio signal tone using a lowpass filter
     :param input_signal: list of audio file data
@@ -37,7 +37,7 @@ def tone(input_signal: [float], cutoff: float = 3.7, depth: float = 30) -> [floa
     :return: the modified audio signal as a list
     """
 
-    output_signal = butter_lowpass_filter(input_signal, cutoff, depth, 20)
+    output_signal = butter_lowpass_filter(input_signal, cutoff, depth * 60, 20)
     return output_signal
 
 
@@ -49,6 +49,6 @@ def boost(input_signal: [float], increase: float = 0) -> [float]:
     :return: the modified audio signal as a list
     """
 
-    decibelToFloat = 10 ** (increase / 10)
+    decibelToFloat = 10 ** (increase)
     output_signal = [x * decibelToFloat for x in input_signal]
     return output_signal

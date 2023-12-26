@@ -3,16 +3,15 @@ from Pedals.Delay.delayPedal import DelayPedal
 from Pedals.LoFiModulator.lofiPedal import LoFiPedal
 from Pedals.Overdrive.overdrivePedal import OverdrivePedal
 from Pedals.PitchShift.pitchshiftPedal import PitchShiftPedal
-from Pedals.pedalbase import BasePedal
 
 
 def initializePedal(pedal_type: str, params: []):
     match pedal_type:
         case 'distortion':
-            if len(params) > 3:
+            if len(params) > 4:
                 raise IndexError(f"Too many input parameters ({len(params)}) for {pedal_type} pedal.")
             else:
-                return DistortionPedal(params[0], params[1], params[2])
+                return DistortionPedal(params[0], params[1], params[2], params[3])
         case 'delay':
             if len(params) > 2:
                 raise IndexError(f"Too many input parameters ({len(params)}) for {pedal_type} pedal.")
@@ -24,10 +23,10 @@ def initializePedal(pedal_type: str, params: []):
             else:
                 return LoFiPedal(params[0])
         case 'overdrive':
-            if len(params) > 3:
+            if len(params) > 4:
                 raise IndexError(f"Too many input parameters ({len(params)}) for {pedal_type} pedal.")
             else:
-                return OverdrivePedal(params[0], params[1], params[2])
+                return OverdrivePedal(params[0], params[1], params[2], params[3])
         case 'pitchshift':
             if len(params) > 2:
                 raise IndexError(f"Too many input parameters ({len(params)}) for {pedal_type} pedal.")

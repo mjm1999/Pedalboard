@@ -8,7 +8,7 @@ def timestretch(input_signal: [float], stretch: float = 1.0) -> [float]:
     return out
 
 
-def modulator(input_signal: [float], factor: float = 1.0) -> [float]:
+def modulator(input_signal: [float], factor: float = 0.0) -> [float]:
     """
     Add a lo-fi effect to an audio signal by signal compression and decompression
     :param input_signal: list of audio file data
@@ -16,6 +16,6 @@ def modulator(input_signal: [float], factor: float = 1.0) -> [float]:
     :return: the modified audio signal as a list
     """
     output_signal = timestretch(np.array(input_signal), factor)
-    output_signal = timestretch(output_signal, (1 / factor))
+    output_signal = timestretch(output_signal, (1 - factor))
 
     return output_signal

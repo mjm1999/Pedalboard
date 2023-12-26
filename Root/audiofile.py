@@ -8,3 +8,9 @@ class AudioFile:
     def loadFile(self, filename):
         self.data, self.rate = load(filename)
 
+    def getData(self) -> [float]:
+        return self.data
+
+    def getRate(self) -> float:
+        return self.rate
+
